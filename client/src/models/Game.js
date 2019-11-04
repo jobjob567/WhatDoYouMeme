@@ -1,11 +1,28 @@
+import Caption_Deck from "./Captions";
+
 export const Game_Server = {
     Players: [],
-    Picture_Deck: [],
-    Caption_Deck: [],
+    Picture_Deck: [
+        "http://www.dailyhaha.com/_pics/prepared-to-slice-onions.jpg",
+        "http://www.dailyhaha.com/_pics/no-parking-here-guys.jpg",
+        "http://www.dailyhaha.com/_pics/best-parking-spot.jpg",
+        "http://www.dailyhaha.com/_pics/a-good-selling-point.jpg",
+    ],
+    Caption_Deck,
+    Top_Of_Picture_Deck: 0,
+    Top_Of_Caption_Deck: 0,    
+
     Dealer: -1,
     Captions_In_Play: [], // strings
     Picture_In_Play: "",
-    Caption_Chosen: -1
+    Caption_Chosen: -1,
+    Get_Hand(amount = 7){
+        this.Top_Of_Caption_Deck += amount;
+        return this.Caption_Deck.slice(this.Top_Of_Caption_Deck - amount, this.Top_Of_Caption_Deck)
+    },
+    Get_Next_Picture(){
+        return this.Picture_Deck[this.Top_Of_Picture_Deck++];
+    }
 }
 
 export const Game_Client = {
@@ -15,26 +32,15 @@ export const Game_Client = {
         { name: "Donald", points: 0 },
         { name: "Andrew", points: 0 },
     ],
-    Dealer: -1,
-    Captions_In_Play: [
-            {quote:"When nothing goes right, go left instead!"},
-            {quote:"I need a six month holiday, twice a year."},
-            {quote:"There may be no excuse for laziness, but I’m still looking."},
-            {quote:"A blind man walks into a bar… And a chair… and a table."},
-            {quote:"I don’t always surf the internet, but when I do, eyebrows!"},
-            {quote:"Yesterday, I changed my WiFi password to “Hackitifyoucan”; today, someone changed it to “ChallengeAccepted”."},
-            {quote:"So, you’re on Instagram? You must be an amazing photographer."},
-            {quote:"Real men don’t take selfies."},
-            {quote:"I haven’t done this in a while so excuse me."},
-            {quote:"I know I’m lucky that I’m so cute."},
-            {quote:"Onions make me sad. A lot of people don’t realize that."},
-            {quote:"I’m your worst nightmare."},
-    ], // strings
+    Dealer: 0,
+    Captions_In_Play: [], // strings
     Picture_In_Play: "",
     Caption_Chosen: -1
 }
 
-export var My_Captions = [];
+export var My_Captions = [
+
+];
 
 export class Player {
     name;
