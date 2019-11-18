@@ -12,5 +12,11 @@ app.get('/picture/flip', (req, res)=>{
     Game.Flip_Picture();
     res.send({ success: true, url: Game.Picture_In_Play });
 } );
+app.post('/players', (req, res)=>{
+    const player_id = Game.Join(req.body.name);
+    res.send({ success: true, player_id });
+} );
+
+
 
 module.exports = app;

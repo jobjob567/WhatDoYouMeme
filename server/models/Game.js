@@ -1,4 +1,5 @@
 const Caption_Deck = require('./Captions');
+const {CustomError} = require('./CustomError');
 
 module.exports.Game = {
     Players: [
@@ -28,6 +29,13 @@ module.exports.Game = {
     Flip_Picture(){
         this.Picture_In_Play = this.Picture_Deck[this.Top_Of_Picture_Deck++];
         this.Dealer++;
+    },
+    Join(name){
+        if(this.Players.find(x=> x.name == name )){
+            throw new CustomError(409, 'Another user is already using this name');
+        }
+        this.Players.push({ name, score: 0 });
+        return this.Players.length - 1;
     },
     Get_State(){
         return {
