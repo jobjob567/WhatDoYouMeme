@@ -39,6 +39,12 @@ module.exports.Game = {
     },
     Submit_Caption(player_id, text){
         this.Captions_In_Play.push( { player_id, text } )
+        if(player_id == this.Dealer){
+            throw new CustomError(500, "Dealer is not allowed to submit a caption")
+        }
+        if( this.Captions_In_Play.some( x=>x.player_id== player_id )){
+            throw new CustomError(500, "Sorry, you've already submitted a caption")
+        }
     },
     Get_State(){
         return {

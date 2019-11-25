@@ -4,7 +4,7 @@ const { CustomError } = require('../models/CustomError');
 const app = express.Router();
 
 app.get('/', (req, res)=>{
-    res.send({ ...Game.Get_State(), me: Game.PLayers[req.user_id] } );
+    res.send({ ...Game.Get_State(), me: Game.Players[req.user_id] } );
 } );
 app.get('/hand', (req, res)=>{
     res.send(Game.Get_Hand());
