@@ -21,7 +21,7 @@ app
     .use('/game', gameController );
 
 app
-    .use((err, req, res, next) =>{
+    .use((err, req, res, next) => {
         res.status(err.code || 500).send({ message: err.message || '' + err })
     })
 

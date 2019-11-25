@@ -1,10 +1,9 @@
-
 class CustomError extends Error {
-    constructor(code=500, ...args) {
+    constructor( code=500,...args) {
         super(...args)
-        Error.captureStackTrace(this, GoodError)
+        Error.captureStackTrace(this, CustomError);
 
-        this.code=code;
+        this.code = code;
     }
 }
 
